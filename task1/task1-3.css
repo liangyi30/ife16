@@ -24,6 +24,7 @@ body{
 }
 .introduction{
 	width: 100%;
+	min-height: 400px;
 }
 .team{
 	width: 200px;
