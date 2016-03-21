@@ -1,6 +1,7 @@
 body{
 	width: 980px;
 	height: 1386px;
+	margin: 0 auto;
 }
 header,.container,footer{
 	width:892px;
@@ -183,12 +184,12 @@ span{
 	bottom: -12px;
 	font: 26px "Microsoft YaHei";
 	color: #FFF;
-	left: 20px;
+	left: 60px;
 }
 .q2{
 	position: relative;
 	bottom: 30px;
-	left: 150px;
+	left: 180px;
 	font:italic 12px "Microsoft YaHei";
 	color: #72b16a;
 	letter-spacing: 140%;
@@ -199,4 +200,114 @@ span{
 	background: #EEEED6;
 	position: relative;
 	bottom: 60px;
+	overflow: hidden;
+}
+ol{
+	position: relative;
+	top: 40px;
+}
+ul{
+    font: 16px "SimHei";
+	color:#5a5a5b;
+	line-height: 20px;
+	text-align: left;
+	list-style:none;
+	padding-left: 0;
+	margin-right: 0;
+	background: url(img/trangle.png) no-repeat 0 0.1em;
+	padding-left: 15px;
+}
+ol span{
+	font:italic 12px "SimHei" ;
+	color:  #5a5b5b;
+	text-align: right;
+	line-height: 20px;
+}
+.number{
+	width: 260px;
+	height: 160px;
+	float: left;
+    position: relative;
+    top:78px;
+	background: #D55D5C;
+	overflow: hidden;
+}
+.number span{
+	font: 110px "Microsoft YaHei";
+	color: #fff;
+}
+.num{
+	font:italic 21px "SimHei";
+	color: #fff;
+	line-height: 15px;
+	position: relative;
+	bottom: 135px;
+	left: 80px;
+}
+.hw{
+	font: 12px "SimHei";
+	color: #fff;
+	line-height: 12px;
+	position: relative;
+	bottom: 140px;
+	left: 80px;
+	width: 180px;
+}
+.hello{
+	float: right;
+	width: 170px;
+	height: 150px;
+	position: relative;
+	top: 70px;
+}
+.hello p{
+	font:italic 14px "SimHei";
+	color:#5a5a5b;
+	line-height: 16px;
+	width: 170px;
+	height: 150px;
+}
+.banner hr{
+	width: 3px;
+	background: #72b16a;
+	height: 44px;
+	position: absolute;
+	left: 46px;
+}
+.number hr{
+	border: none;
+	width: 2px;
+	height: 86px;
+	position: absolute;
+	left: 70px;
+	top:30px;
+	background: #fff;
+}
+.hello p span{
+	font: 72px "SimHei";
+	display: block;
+	line-height: 5px;
+}
+.quote-left{
+	position: relative;
+	left: -40px;
+	top: 20px;
+	float: left;
+}
+.quote-right{
+	clear: both;
+	float: right;
+	position: relative;
+	top: 35px;
+	left: 20px;
+}
+footer{
+	border-top: 1px solid #938e8c;
+	width: 892px;
+	margin-top: 50px;
+}
+footer p{
+	font: 12px "SimHei";
+	color: #d45d5c;
+	float: right;
 }
