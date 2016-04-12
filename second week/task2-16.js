@@ -35,7 +35,7 @@ function renderAqiList() {
 	var item = "<tr><td>城市</td><td>空气质量</td><td>操作</td></tr>";
 	var aqiTable = document.getElementById("aqi-table");
 	for (var names in aqiData){
-		item += "<tr><td>" + names + "</td><td>" + aqiData[names] +"</td><td><button onclick=\"delBtnHandle(\"+ names + \")\"  type=\"button\" id=\"deleteli\">删除</button></td></tr>"
+		item += "<tr><td>" + names + "</td><td>" + aqiData[names] +"</td><td><button onclick='delBtnHandle(\"" +  names + "\")'  type='button' id='deleteli'>删除</button></td></tr>"
 		aqiTable.innerHTML = names ? item : "";
 	} 
 

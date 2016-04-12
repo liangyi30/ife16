@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#div-group button{
+			width: 60px;
+			height: 40px;
+		}
+		.divA{
+			width: 100px;
+			height: 100px;
+			background: #0fe;
+			float: left;
+			margin: 10px;
+			font: 24px;
+			color: #fff;
+			text-align: center;
+		}
+		#wrap{
+			width: 800px;
+			border: 2px solid #0fe;
+			overflow: auto;
+			margin: 20px;
+			min-height: 100px;			
+		}
+
+	</style>
+</head>
+<body>
+	<div id="div-group">
+		<input id="keys" type="text">
+		<button id="left-in" type="text">左侧进</button>
+		<button id="right-in" type="text">右侧进</button>
+		<button id="left-out" type="text">左侧出</button>
+		<button id="right-out" type="text">右侧出</button>
+		<div id="wrap">
+		</div>
+	</div>	
+	<script type="text/javascript">
+		var wrap = document.getElementById("wrap");
+		function rightI () {
+			var keys = document.getElementById("keys");
+			if (isNaN(keys.value)||keys.value==""){
+			alert("请输入数字！")
+		}else{
+			var divs = document.createElement("div");
+			divs.className = "divA";
+			divs.innerHTML = keys.value;		
+			wrap.appendChild(divs);
+		}
+			keys.value = "";
+	}		
+		function leftI() {
+			var keys = document.getElementById("keys");
+			if(isNaN(keys.value)||keys.value==""){
+			alert("请输入数字！")
+		}else{
+			var divs = document.createElement("div");
+			divs.className = "divA";
+			divs.innerHTML = keys.value;
+			wrap.insertBefore(divs,wrap.firstChild);
+		}
+			keys.value = "";
+	}
+		function leftO () {
+			if( wrap.firstChild){
+			alert( wrap.firstChild.firstChild.nodeValue);
+			wrap.removeChild(wrap.firstChild);
+			}else{
+				alert('没有需要删除的数字');
+			}
+		}
+ 		function rightO() {
+ 			if(wrap.lastElementChild){
+ 			alert( wrap.lastElementChild.firstChild.nodeValue);
+ 			wrap.removeChild(wrap.lastElementChild);
+ 			}else{
+ 				alert('没有需要删除的数字');
+ 			}
+ 		}
+ 		function init() {
+ 			document.getElementById("left-in").onclick = leftI;
+ 			document.getElementById("left-out").onclick = leftO;
+ 			document.getElementById("right-in").onclick = rightI;
+ 			document.getElementById("right-out").onclick = rightO;
+ 		}
+ 		wrap.onclick = function(event){
+ 			wrap.removeChild(event.target);
+ 		}
+ 		window.onload = init;
+ 	</script>
+</body>
+</html>
