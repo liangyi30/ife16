@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务十九</title>
+	<style type="text/css">
+		.buttons{
+			width: 60px;
+			height: 40px;
+		}
+		.divA{
+			width: 10px;
+			background: #0fe;
+			float: left;
+			margin-left: 1px;
+		}
+	</style>
+</head>
+<body>
+	<div id="head">
+		<input id= "keys" type="text">
+		<input class="buttons" type="button" name="left-in" value="左入">
+		<input class="buttons" type="button" name="right-in" value="右入">
+		<input class="buttons" type="button" name="left-out" value="左出">
+		<input class="buttons" type="button" name="right-out" value="右出">
+		<input class="buttons" type="button" name="sort-order" value="排序">
+		<input class="buttons" type="button" name="random" value="随机">
+	</div>
+	<div id="wrap"></div>
+	<script type="text/javascript">
+		//事件绑定
+		addHandler = function(element,type,handler) {
+			if(element.addEventListener){
+					element.addEventListener(type,handler,false);
+			}	else if (element.attachEvent){
+					element.attachEvent("on" + type,handler);
+			}	else{
+					element["on" + type] =handler;
+			}
+		}
+		
+
+		wa = function(){
+			var buttons = document.getElementsByClassName("buttons");
+			var wrap = document.getElementById("wrap");
+			var head = document.getElementById("head");
+			var divA = document.getElementsByClassName("divA");
+			if(divA.length>60){
+				alert("您已经输入60个项目了")
+			}
+			switch(event.target.name){
+				case "left-in":
+					var keys = document.getElementById("keys");
+					if(!isNaN(keys.value) && keys.value > 9 && keys.value < 101){
+						var divs = document.createElement("div");
+						divs.className = "divA";
+						height = keys.value;
+						divs.style.height = height+"px";
+						wrap.insertBefore(divs,wrap.firstChild);
+					}else{
+						alert("请输入的数字在10~100！")
+					}
+				keys.value = "";
+				break;
+				case "right-in":
+					var keys = document.getElementById("keys");
+					if(!isNaN(keys.value) && keys.value > 9 && keys.value < 101){
+						var divs = document.createElement("div");
+						divs.className = "divA";
+						height = keys.value;
+						divs.style.height = height+"px";		
+						wrap.appendChild(divs);
+					}else{
+						alert("请输入的数字在10~100")
+					}
+					keys.value = "";
+				break;
+				case "left-out":
+					if( wrap.firstChild){
+						alert( wrap.firstChild.firstChild.nodeValue);
+						wrap.removeChild(wrap.firstChild);
+					}else{
+						alert('没有需要删除的数字');
+					}
+				break;
+				case "right-out":
+					if(wrap.lastElementChild){
+ 						alert( wrap.lastElementChild.firstChild.nodeValue);
+ 						wrap.removeChild(wrap.lastElementChild);
+ 					}else{
+ 						alert('没有需要删除的数字');
+ 					}
+ 				break;
+ 				case "random":
+ 				 	wrap.innerHTML = "";
+ 					for (var i = 0; i < 60; i++) {
+ 						var divs = document.createElement("div");
+						divs.className = "divA";
+						height = Math.floor(Math.random()*90+10);
+						divs.style.height = height + "px";
+						wrap.appendChild(divs);
+ 					};
+ 				break;
+ 				case "sort-order":
+ 				break;
+			} 
+		}
+		var buttons = document.getElementsByClassName("buttons");
+		addHandler(head,"click",wa);
+</script>			
+</body>
+</html>
