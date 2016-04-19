@@ -29,6 +29,8 @@
 	<div id="wrap"></div>
 	<script type="text/javascript">
 		//事件绑定
+		var arr=[];
+		var divA = document.getElementsByClassName("divA");
 		addHandler = function(element,type,handler) {
 			if(element.addEventListener){
 					element.addEventListener(type,handler,false);
@@ -44,7 +46,6 @@
 			var buttons = document.getElementsByClassName("buttons");
 			var wrap = document.getElementById("wrap");
 			var head = document.getElementById("head");
-			var divA = document.getElementsByClassName("divA");
 			if(divA.length>60){
 				alert("您已经输入60个项目了")
 			}
@@ -77,18 +78,16 @@
 				break;
 				case "left-out":
 					if( wrap.firstChild){
-						alert( wrap.firstChild.firstChild.nodeValue);
 						wrap.removeChild(wrap.firstChild);
 					}else{
-						alert('没有需要删除的数字');
+						alert('没有需要删除的元素');
 					}
 				break;
 				case "right-out":
 					if(wrap.lastElementChild){
- 						alert( wrap.lastElementChild.firstChild.nodeValue);
  						wrap.removeChild(wrap.lastElementChild);
  					}else{
- 						alert('没有需要删除的数字');
+ 						alert('没有需要删除的元素');
  					}
  				break;
  				case "random":
@@ -102,9 +101,43 @@
  					};
  				break;
  				case "sort-order":
- 				break;
+ 				var a=0,b=0;
+ 				var over = divA.length - 1;
+ 				setTimeout(function(){
+ 				setTimeout(function(){
+ 	
+ 							if(parseInt(divA[b].style.height) > parseInt(divA[b+1].style.height)){
+ 							var arg = divA[b+1].style.height;
+ 							divA[b+1].style.height = divA[b].style.height;
+ 							divA[b].style.height = arg;
+ 						}
+ 						b += 1;
+ 						if(b < over){
+ 							setTimeout(arguments.callee,50);
+ 						}
+ 					},50)
+ 				b = 0;
+ 				a +=1;
+ 				if(a < divA.length){
+ 					setTimeout(arguments.callee,300);
+ 				}
+ 			},300)
+
+ 				/*
+ 				for (var a = 0;a < divA.length; a++) {
+ 					for (var b = 0; b < over; b++) {
+ 						if(parseInt(divA[b].style.height) > parseInt(divA[b+1].style.height)){
+ 							var arg = divA[b+1].style.height;
+ 							divA[b+1].style.height = divA[b].style.height;
+ 							divA[b].style.height = arg;
+ 						}
+ 					};
+ 				}	*/
+
+ 					break;
 			} 
 		}
+				
 		var buttons = document.getElementsByClassName("buttons");
 		addHandler(head,"click",wa);
 </script>			
