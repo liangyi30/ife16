@@ -9,10 +9,14 @@
 			height: 40px;
 		}
 		.divA{
-			width: 10px;
+			width: 15px;
 			background: #0fe;
 			float: left;
-			margin-left: 1px;
+			margin-left: 4px;
+		}
+		#wrap{
+			display: flex;
+			align-items:flex-end;
 		}
 	</style>
 </head>
@@ -31,6 +35,9 @@
 		//事件绑定
 		var arr=[];
 		var divA = document.getElementsByClassName("divA");
+		var buttons = document.getElementsByClassName("buttons");
+		var wrap = document.getElementById("wrap");
+		var head = document.getElementById("head");
 		addHandler = function(element,type,handler) {
 			if(element.addEventListener){
 					element.addEventListener(type,handler,false);
@@ -41,103 +48,103 @@
 			}
 		}
 		
-
 		wa = function(){
-			var buttons = document.getElementsByClassName("buttons");
-			var wrap = document.getElementById("wrap");
-			var head = document.getElementById("head");
 			if(divA.length>60){
 				alert("您已经输入60个项目了")
 			}
 			switch(event.target.name){
 				case "left-in":
-					var keys = document.getElementById("keys");
-					if(!isNaN(keys.value) && keys.value > 9 && keys.value < 101){
+					leftIn();
+				break;
+				case "right-in":
+					rightIn();
+				break;
+				case "left-out":
+					leftOut();
+				break;
+				case "right-out":
+					rightOut();
+				break;
+				case "random":
+					random();
+				break;
+				case "sort-order":
+					sortOrder();
+				break;
+			} 
+		}
+		function leftIn(){
+			var keys = document.getElementById("keys");
+			if(!isNaN(keys.value) && keys.value > 9 && keys.value < 101){
 						var divs = document.createElement("div");
 						divs.className = "divA";
-						height = keys.value;
+						height = 4*keys.value;
 						divs.style.height = height+"px";
 						wrap.insertBefore(divs,wrap.firstChild);
 					}else{
 						alert("请输入的数字在10~100！")
-					}
-				keys.value = "";
-				break;
-				case "right-in":
-					var keys = document.getElementById("keys");
-					if(!isNaN(keys.value) && keys.value > 9 && keys.value < 101){
+							}
+						keys.value = "";
+		}
+		function rightIn(){
+			var keys = document.getElementById("keys");
+			if(!isNaN(keys.value) && keys.value > 9 && keys.value < 101){
 						var divs = document.createElement("div");
 						divs.className = "divA";
-						height = keys.value;
+						height = 5*keys.value;
 						divs.style.height = height+"px";		
 						wrap.appendChild(divs);
 					}else{
 						alert("请输入的数字在10~100")
 					}
 					keys.value = "";
-				break;
-				case "left-out":
-					if( wrap.firstChild){
+		}
+		function leftOut(){
+			if( wrap.firstChild){
 						wrap.removeChild(wrap.firstChild);
 					}else{
 						alert('没有需要删除的元素');
 					}
-				break;
-				case "right-out":
-					if(wrap.lastElementChild){
- 						wrap.removeChild(wrap.lastElementChild);
- 					}else{
- 						alert('没有需要删除的元素');
- 					}
- 				break;
- 				case "random":
- 				 	wrap.innerHTML = "";
- 					for (var i = 0; i < 60; i++) {
- 						var divs = document.createElement("div");
-						divs.className = "divA";
-						height = Math.floor(Math.random()*90+10);
-						divs.style.height = height + "px";
-						wrap.appendChild(divs);
- 					};
- 				break;
- 				case "sort-order":
- 				var a=0,b=0;
- 				var over = divA.length - 1;
- 				setTimeout(function(){
- 				setTimeout(function(){
- 	
- 							if(parseInt(divA[b].style.height) > parseInt(divA[b+1].style.height)){
- 							var arg = divA[b+1].style.height;
- 							divA[b+1].style.height = divA[b].style.height;
- 							divA[b].style.height = arg;
- 						}
- 						b += 1;
- 						if(b < over){
- 							setTimeout(arguments.callee,50);
- 						}
- 					},50)
- 				b = 0;
- 				a +=1;
- 				if(a < divA.length){
- 					setTimeout(arguments.callee,300);
- 				}
- 			},300)
-
- 				/*
- 				for (var a = 0;a < divA.length; a++) {
- 					for (var b = 0; b < over; b++) {
- 						if(parseInt(divA[b].style.height) > parseInt(divA[b+1].style.height)){
- 							var arg = divA[b+1].style.height;
- 							divA[b+1].style.height = divA[b].style.height;
- 							divA[b].style.height = arg;
- 						}
- 					};
- 				}	*/
-
- 					break;
-			} 
 		}
-				
+		function rightOut(){
+			if(wrap.lastElementChild){
+				wrap.removeChild(wrap.lastElementChild);
+			}else{
+				alert('没有需要删除的元素');
+			}
+		}
+		function random(){
+			wrap.innerHTML = "";
+			for (var i = 0; i < 60; i++) {
+				var divs = document.createElement("div");
+				divs.className = "divA";
+				height = 4*Math.floor(Math.random()*90+10);
+				divs.style.height = height + "px";
+				wrap.appendChild(divs);
+										}
+		}
+		function sortOrder(){
+			var a=0,b=0;
+			var over = divA.length - 1;
+			setTimeout(
+				function(){
+					if(b < over){
+						if(parseInt(divA[b].style.height) > parseInt(divA[b+1].style.height)){
+							var arg = divA[b+1].style.height;
+							divA[b+1].style.height = divA[b].style.height;
+							divA[b].style.height = arg;
+											}
+						b++;
+					}else{
+							b=0;
+							a =+ 1;
+						}
+						if(a < divA.length){
+							setTimeout(arguments.callee,20)
+											}
+					},20)
+
+		}
 		var buttons = document.getElementsByClassName("buttons");
 		addHandler(head,"click",wa);
 </script>			
