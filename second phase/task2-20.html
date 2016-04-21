@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task2-20</title>
+	<style type="text/css">
+			.divA{
+			width: 100px;
+			height: 100px;
+			background-color: #0fe;
+			float: left;
+			margin: 0px 10px 10px 0px;
+		}
+	</style>
+</head>
+<body>
+	<textarea id="input"></textarea>
+	<input type="button" id="add" value="添加">
+	<input type="button" id="search" value="查询">
+	<input type="text" id="input goal">
+	<div id="wrap"></div>
+	<script type="text/javascript">
+	//添加元素
+	var input = document.getElementById("input");
+	var wrap = document.getElementById("wrap");
+	var add = document.getElementById("add");
+	var search = document.getElementById("search")
+	function addChar(){
+		var arr = input.value.split(/[,.，。]|\s/);
+		for( var i =0; i < arr.length; i++){
+			var divs = document.createElement("div");
+			divs.innerHTML = arr[i];
+			divs.className = "divA";
+			wrap.appendChild(divs);
+		}
+		return arr;
+	}
+	function find(){
+		var inputGoal = document.getElementById("input goal");
+		var divv = wrap.getElementsByTagName('div');
+		for(var i = 0;i < divv.length; i++){
+			var va = divv[i].firstChild.nodeValue;
+			if(va.indexOf(inputGoal.value) > -1){
+			divv[i].style.backgroundColor = "red";
+			}
+		}
+	}
+	search.onclick = find;
+	add.onclick = addChar;
+	</script>   	
+</body>
+</html>
